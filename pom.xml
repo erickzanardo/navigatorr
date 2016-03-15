@@ -4,7 +4,7 @@
   <groupId>org.eck</groupId>
   <artifactId>navigatorr</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1</version>
   <name>navigatorr</name>
   <url>http://maven.apache.org</url>
 
