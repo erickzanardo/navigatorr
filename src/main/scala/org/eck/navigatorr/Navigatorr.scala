@@ -31,13 +31,15 @@ class Navigatorr[T] {
     var points = parseRoute(route)
     var navigationPoint = Option(root)
 
+    val params = new util.HashMap[String, String]()
     while(points.size > 0 && navigationPoint.isDefined) {
       navigationPoint = navigationPoint.get.findChild(points(0))
+      if (navigationPoint.get.isParam) params.put(navigationPoint.get.paramId, points(0))
       points = points.drop(1)
     }
 
     if(navigationPoint.isDefined && navigationPoint.get.controller.isDefined) {
-      return Option(new NavigationRoute[T](navigationPoint.get.controller.get, new util.HashMap[String, String]()))
+      return Option(new NavigationRoute[T](navigationPoint.get.controller.get, params))
     }
     None
   }

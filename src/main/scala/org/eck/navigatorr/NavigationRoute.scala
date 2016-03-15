@@ -4,5 +4,9 @@ import java.util
 
 class NavigationRoute[T](_controller: T, _params: util.HashMap[String, String]) {
   val controller = _controller
-  val params = _params
+  private val params = _params
+
+  def stringParam(key: String): Option[String] = {
+    Option(params.get(key))
+  }
 }

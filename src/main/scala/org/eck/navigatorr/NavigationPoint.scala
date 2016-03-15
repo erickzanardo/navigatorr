@@ -5,6 +5,8 @@ import java.util
 class NavigationPoint[T](_identifier: String) {
   val identifier = _identifier
   val isParam: Boolean = identifier.startsWith(":")
+  val paramId: String = if (isParam) { identifier.replaceFirst(":", "") } else { "" }
+
   var controller: Option[T] = None
   private var children: List[NavigationPoint[T]] = List()
 
