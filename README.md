@@ -18,3 +18,18 @@ navigatorr.addRoute("/foo/bla/:id", "SomeController")
 val nr: NavigationRoute[String] = navigator.getRoute("/foo/bla/ble").get
 nr.stringParam("id") // Returns an Option filled with the string ble
 ```
+
+# Maven
+
+```xml
+  <repository>
+    <id>erickzanardo-releases</id>
+    <url>http://erickzanardo.github.com/maven/releases/</url>
+  </repository>
+
+  <dependency>
+    <groupId>org.eck</groupId>
+    <artifactId>navigatorr</artifactId>
+    <version>0.1</version>
+  </dependency>
+```
