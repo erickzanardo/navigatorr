@@ -1,7 +1,5 @@
 package org.eck.navigatorr
 
-import java.util
-
 class NavigationPoint[T](_identifier: String) {
   val identifier = _identifier
   val isParam: Boolean = identifier.startsWith(":")
@@ -15,7 +13,11 @@ class NavigationPoint[T](_identifier: String) {
     if (result.size == 1) return result(0)
 
     val navigationPoint = new NavigationPoint[T](point)
-    children = children :+ navigationPoint
+    if (navigationPoint.isParam) {
+      children = children ::: List(navigationPoint)
+    } else {
+      children = List(navigationPoint) ::: children
+    }
     return navigationPoint
   }
 

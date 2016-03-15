@@ -43,4 +43,20 @@ class NavigatorrTest {
     Assert.assertTrue(nr.stringParam("name").isDefined)
     Assert.assertEquals("blo", nr.stringParam("name").get)
   }
+
+  @Test
+  def testParamsOrders = {
+    val navigatorr = new Navigatorr[String]
+    navigatorr.addRoute("/foo/bla/:id", "SomeController")
+    navigatorr.addRoute("/foo/bla/blu", "SomeOtherController")
+
+    var nr: NavigationRoute[String] = navigatorr.getRoute("/foo/bla/blu").get
+    Assert.assertEquals("SomeOtherController", nr.controller)
+    Assert.assertFalse(nr.stringParam("id").isDefined)
+
+    nr = navigatorr.getRoute("/foo/bla/ble").get
+    Assert.assertEquals("SomeController", nr.controller)
+    Assert.assertTrue(nr.stringParam("id").isDefined)
+    Assert.assertEquals("ble", nr.stringParam("id").get)
+  }
 }
